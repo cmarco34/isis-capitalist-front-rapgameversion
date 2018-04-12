@@ -1,20 +1,73 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!--
+    <img [attr.src]="server+world.logo" /> </span>
+    <span id="worldname"> {{world.name}} </span>
+    <app-product [prod]="world.products.product[0]"
+    class="product col-md-6"></app-product>
+-->
+<app-modal #managersModal>
+  <div class="app-modal-header">
+    <h4 class="modal-title">Managers make you feel better !</h4>
+  </div>
+  <div class="app-modal-body">
+    <div *ngFor="let manager of world.managers.pallier">
+      <div class="row" *ngIf="!manager.unlocked">
+        <div class="col-md-3"><img class="img-responsive" id="managerlogo" [attr.src]="server+manager.logo"/></div>
+        <div class="col-md-6"><h1>{{manager.name}}</h1><h2>{{manager.seuil}}</h2></div>
+        <div id="contbut" class="col-md-3"><button class="btn btn-success" (click)="hireManager(manager)" [disabled]="!manDisp">Hire !</button></div>    
+      </div>
+    </div>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="managersModal.hide()">Close</button>
+  </div>
+</app-modal>
 
+<div id="ecran" class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"><img class="img-responsive" id="worldlogo" [attr.src]="server+world.logo" /></div>
+    <div class="col-md-3"><span id="worldname"> {{world.name}} </span></div>
+    <div class="col-md-2"><span id="worldmoney" [innerHTML]="world.money | bigvalue"></span></div>
+    <div class="col-md-2"><button class="btn btn-warning" (click)="changeMulti(this.qtmulti)">x{{qtmulti}}</button></div>
+    <div class="col-md-3"><label for="idjoueur">ID :</label><input type="text" [(ngModel)]="username" (change)="onUsernameChanged()"/></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="row"><button type="button" class="btn btn-info">Unlocks</button></div>
+      <div class="row"><button type="button" class="btn btn-info">Cash Upgrades</button></div>
+      <div class="row"><button type="button" class="btn btn-info">Angel Upgrades</button></div>
+      <div class="row"><button type="button" class="btn btn-info" data-toggle="modal" (click)="managersModal.show()" ><span *ngIf="manDisp" class="badge">New</span>Managers</button></div>
+      <div class="row"><button type="button" class="btn btn-info">Investors</button></div>
+      <div class="row"><button type="button" class="btn btn-info">Info</button></div>
+    </div>
+    <div class="col-md-5">
+      <div class="row" class="produit">
+        <app-product [prod]="world.products.product[0]" [qtmulti]="qtmulti" [money]="world.money"
+          class="product col-md-12" (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"></app-product>
+      </div>
+      <div class="row" class="produit">
+          <app-product [prod]="world.products.product[1]" [qtmulti]="qtmulti" [money]="world.money"
+          class="product col-md-12" (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"></app-product>
+      </div>
+      <div class="row" class="produit">
+          <app-product [prod]="world.products.product[2]" [qtmulti]="qtmulti" [money]="world.money"
+          class="product col-md-12" (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"></app-product>
+      </div>
+    </div>
+      <div class="col-md-5">
+        <div class="row" class="produit">
+          <app-product [prod]="world.products.product[3]" [qtmulti]="qtmulti" [money]="world.money"
+            class="product col-md-12" (notifyProduction)="onProductionDone($event)"  (notifyBuy)="onBuyDone($event)"></app-product>
+        </div>
+        <div class="row" class="produit">
+            <app-product [prod]="world.products.product[4]" [qtmulti]="qtmulti" [money]="world.money"
+            class="product col-md-12" (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"></app-product>
+        </div>
+        <div class="row" class="produit">
+            <app-product [prod]="world.products.product[5]" [qtmulti]="qtmulti" [money]="world.money"
+            class="product col-md-12" (notifyProduction)="onProductionDone($event)" (notifyBuy)="onBuyDone($event)"></app-product>
+        </div>
+    </div>
+  </div>
+</div>
+
+<toaster-container></toaster-container>

@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div id="logonombre" class="col-md-3">
+      <img class="img-responsive" id="productlogo" [attr.src]="server+product.logo" (click)="startFabrication()"/>
+      <div class="well well-sm">{{product.quantite}}</div>
+    </div>
+    <div class="col-md-9">
+      <div class="row" id="prod">
+        <div class="progress" #bar><span id="revtotal">{{revenutotal}}</span></div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <button (click)=buy()>Acheter {{total}} pour {{couttotal | bigvalue}} €</button>
+        </div>
+        <div class="col-md-4">
+          <span id="timeproduct" [innerHTML]="product.timeleft | time"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

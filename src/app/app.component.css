@@ -1,0 +1,32 @@
+#ecran { 
+  margin:0;
+  padding:0;
+  background: url(images/bg.jpg) no-repeat center fixed;
+  -webkit-background-size: cover;
+  background-size: cover
+}
+
+.container-fluid {
+  height: 100%;
+  margin: 0;
+  padding: 0
+}
+
+#worldlogo {
+  border-radius: 5%;
+  width: 150px;
+  height: 150px;
+  margin: 20%
+}
+
+#managerlogo {
+  border-radius: 50%;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.badge {
+  width: 20%;
+}

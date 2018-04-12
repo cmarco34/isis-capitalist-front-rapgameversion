@@ -1,0 +1,34 @@
+#logonombre {
+    position: relative
+}
+
+#productlogo
+{
+    border-radius: 50%;
+}
+
+.well {
+    position: absolute;
+    width: 80%;
+    height:20%;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80%;
+    background-color: #4C4C4C;
+    border-radius: 5%;
+    text-align: center;
+    color: white;
+    line-height: 100%;
+}
+
+#prod {
+    position: relative
+}
+#revtotal {
+    position: absolute;
+    bottom: 75%;
+    left: 50%;
+    transform: translate(-50%, 75%);
+    text-align: center;
+}
